@@ -21,25 +21,25 @@
     ]
   },
   {
-    "objectID": "src/tt/2025-07-08.html",
-    "href": "src/tt/2025-07-08.html",
-    "title": "TidyTuesday Sample 1",
+    "objectID": "src/tt/hw01-tt.html",
+    "href": "src/tt/hw01-tt.html",
+    "title": "Homework 01",
     "section": "",
-    "text": "Add content here",
+    "text": "TidyTuesday Section\nExplore the week’s TidyTuesday challenge. Develop a research question, then answer it through a short data story with effective visualization(s). Provide sufficient background for readers to grasp your narrative.\nCodelibrary(ggplot2)\nCodefrogID_data &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-09-02/frogID_data.csv')\nfrog_names &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-09-02/frog_names.csv')\nCode# Daily recording counts\n\nggplot(frogID_data, aes(x = eventDate)) +\n  geom_histogram(fill = \"steelblue\") +\n  labs(title = \"Daily Frog Records in 2023\",\n    x = \"Date\", y = \"Number of Records\") +\n  theme_minimal()\nCode# Record time of the day\n\nggplot(frogID_data, aes(x = eventTime)) +\n  geom_histogram(fill = \"steelblue\") +\n  labs(title = \"Recordings by time of Day\",\n    x = \"Hour\", y = \"Count\") +\n  theme_minimal()\nCode# Frog location distribution map\n\nlibrary(leaflet)\nleaflet(frogID_data) %&gt;% \n  addTiles() %&gt;% \n  addCircleMarkers(~decimalLongitude, ~decimalLatitude,\n                   radius = 4, color = \"darkgreen\")",
     "crumbs": [
       "TidyTuesday",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>TidyTuesday Sample 1</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Homework 01</span>"
     ]
   },
   {
-    "objectID": "src/tt/2025-07-15.html",
-    "href": "src/tt/2025-07-15.html",
-    "title": "TidyTuesday Sample 2",
+    "objectID": "src/tt/hw01-tt.html#tidytuesday-section",
+    "href": "src/tt/hw01-tt.html#tidytuesday-section",
+    "title": "Homework 01",
     "section": "",
-    "text": "Add content here",
+    "text": "Research question: How do the temporal and geographical factors affect the record of frogs in Australia in 2023?\n\n\n\n\n\nConclusion: Frogs tend to occur more often around October, which is the spring season in Australia. It reflects frogs prefer warmer weather than colder one. According to the histogram graph that depicts the time frogs being recorded in the day, they are most active around 10am in the morning and 20pm at night. Based on the point map, we can clearly perceive that frogs like to gather near the water source.",
     "crumbs": [
       "TidyTuesday",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>TidyTuesday Sample 2</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Homework 01</span>"
     ]
   },
   {
@@ -50,7 +50,7 @@
     "text": "Add content here",
     "crumbs": [
       "In-Class Activities",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ICA Sample 1</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ICA Sample 1</span>"
     ]
   },
   {
@@ -61,7 +61,7 @@
     "text": "Add content here",
     "crumbs": [
       "In-Class Activities",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ICA Sample 2</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ICA Sample 2</span>"
     ]
   },
   {
