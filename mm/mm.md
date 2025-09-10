@@ -4,3 +4,17 @@
 
 ![0808-mind_map_example.jpg](0808-mind_map_example.jpg)
 
+
+## Review
+
+![0905-mind_map.jpg](0905-mind_map.jpg)
+
+
+## Adv Data Viz
+
+![0908-mind_map.jpg](0908-mind_map.jpg)
+
+
+## Adv Spatial Viz
+
+![0910-mind_map.jpg](0910-mind_map.jpg)
