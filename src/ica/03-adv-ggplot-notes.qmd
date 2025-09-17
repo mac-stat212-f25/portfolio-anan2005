@@ -62,13 +62,24 @@ Examine the [NYTimes 2015 Temperature Visualization (html)](https://www.nytimes.
 **Data Storytelling** 
 
 - Relate the intro paragraph: "Scientists declared that 2015 was Earth’s hottest year on record..." to the *design* of the visualization.  In particular, based on the intro paragraph,
-  - What key message/claim does NYTimes want readers to be able to explore?  How does the temperature changed in different countries
+  - What key message/claim does NYTimes want readers to be able to explore?  
+  
+  > How does the temperature changed across time in a specific area?
+
+
   - How did this goal inform what information is displayed in the visualization? 
+  
+  > It uses bar plots to show the temperature  at different time and conbined them into one viz that can show the trends. 
+  
 
 **Aesthetic Mapping** 
 
-- What specific variables (from the data codebook) underlie the visualization? Month, day, low/high, normallow/high, recordlow/high
+- What specific variables (from the data codebook) underlie the visualization? 
+> Month, day, low/high, normallow/high, recordlow/high
+
 - How do these variables map to aesthetics of the visual elements, eg, position, size, shape, and color of glyphs?
+
+> These variables construct the viz in roughly bell shape. 
 
 
 

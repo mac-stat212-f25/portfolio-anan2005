@@ -18,3 +18,8 @@
 ## Adv Spatial Viz
 
 ![0910-mind_map.jpg](0910-mind_map.jpg)
+
+
+## Adv Data wrangling P1
+
+![0917-mind_map.jpg](0917-mind_map.jpg)
