@@ -231,7 +231,9 @@ Using `tidyverse` functions, complete the following:
 
 
 ```{r}
-#1
+#1 
+
+
 
 #2
 
