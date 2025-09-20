@@ -23,3 +23,10 @@
 ## Adv Data wrangling P1
 
 ![0917-mind_map.jpg](0917-mind_map.jpg)
+
+
+## Adv Data wrangling P2
+
+![0922-mind_map.jpg](0922-mind_map.jpg)
+
+
