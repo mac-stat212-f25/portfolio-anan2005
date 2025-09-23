@@ -65,6 +65,28 @@
     ]
   },
   {
+    "objectID": "src/tt/hw03-tt.html",
+    "href": "src/tt/hw03-tt.html",
+    "title": "Homework 03",
+    "section": "",
+    "text": "TidyTuesday Section (optional)\nExplore the week’s TidyTuesday challenge. Develop a research question, then answer it through a short data story with effective visualization(s). Provide sufficient background for readers to grasp your narrative.\nCodeall_recipes &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-09-16/all_recipes.csv')\ncuisines &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-09-16/cuisines.csv')\nCodelibrary(tidyverse)\nCodecuisines &lt;- cuisines |&gt; \n  mutate(cal_prot = protein * 4,\n         pct_prot = cal_prot / calories * 100) |&gt; \n  filter(!is.na(avg_rating), calories &gt; 0)\n\ntop_cuisine &lt;- cuisines  |&gt; \n  count(country, name = \"n_recipes\")  |&gt; \n  arrange(desc(n_recipes))  |&gt; \n  head(n = 6)  |&gt;  \n  pull(country)\n\ncuisines_top6 &lt;- cuisines |&gt; \n  filter(country %in% top_cuisine)\n\nggplot(cuisines_top6, aes(x = pct_prot, y = avg_rating, color = total_time)) +\n  geom_point(alpha = 0.7) +\n  geom_smooth(method = \"lm\") +\n  facet_wrap(~ country, ncol = 3) +\n  labs(title = \"% Protein & total time needed vs. Average Rating, by Cuisine\",\n       x = \"% of calories from protein\",\n       y = \"Average rating\") +\n  theme_minimal()",
+    "crumbs": [
+      "TidyTuesday",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Homework 03</span>"
+    ]
+  },
+  {
+    "objectID": "src/tt/hw03-tt.html#tidytuesday-section-optional",
+    "href": "src/tt/hw03-tt.html#tidytuesday-section-optional",
+    "title": "Homework 03",
+    "section": "",
+    "text": "Instructions\n\n\n\nYou can count work on this week’s TidyTuesday toward the exceptional work required for an A in the Homework component.\n\n\n\n\nResearch question: How does the percent of calories protein and time needed for the dishes influence average user ratings across different cuisines?",
+    "crumbs": [
+      "TidyTuesday",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Homework 03</span>"
+    ]
+  },
+  {
     "objectID": "src/ica/ica-sample1.html",
     "href": "src/ica/ica-sample1.html",
     "title": "ICA Sample 1",
@@ -72,7 +94,7 @@
     "text": "Add content here",
     "crumbs": [
       "In-Class Activities",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>ICA Sample 1</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ICA Sample 1</span>"
     ]
   },
   {
@@ -83,7 +105,7 @@
     "text": "Add content here",
     "crumbs": [
       "In-Class Activities",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>ICA Sample 2</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>ICA Sample 2</span>"
     ]
   },
   {
