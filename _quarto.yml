@@ -72,7 +72,7 @@ book:
 
     - part: "In-Class Activities"
       chapters:
-      - src/ica/ica-06-wrangling-1-notes.qmd
+      - src/ica/06-wrangling-1-notes.qmd
 
 
   appendices:
