@@ -232,17 +232,34 @@ Using `tidyverse` functions, complete the following:
 
 ```{r}
 #1 
-
-
+diamonds_extremes <- diamonds |> 
+  filter(price < 400 | price > 10000)
 
 #2
+diamonds_500_600 <- diamonds |> 
+  filter(price >= 500 & price <= 600)
 
 #3
+right_count <- diamonds |> 
+  filter(cut %in% c("Fair", "Premium", "Ideal")) |> 
+  summarise(count = n(),
+            fraction = n() / nrow(diamonds))
 
 #4
+any_fair_over_3000 <- diamonds  |> 
+  filter(cut == "Fair")  |> 
+  summarise(any_over_3000 = any(price > 3000))
+
+all_ideal_over_2000 <- diamonds  |> 
+  filter(cut == "Ideal")  |> 
+  summarise(all_over_2000 = all(price > 2000))
 
 #5
-
+diamonds_with_cats <- diamonds %>%
+  mutate(price_cat1 = if_else(price < 500, "low", "high"),
+         price_cat2 = case_when(price < 500 ~ "low",
+                                price >= 500 & price <= 1000 ~ "medium",
+                                price > 1000 ~ "high"))
 ```
 
 

@@ -72,12 +72,10 @@ book:
 
     - part: "In-Class Activities"
       chapters:
-      - src/ica/ica-sample1.qmd
-      - src/ica/ica-sample2.qmd
+      - src/ica/ica-06-wrangling-1-notes.qmd
+
 
   appendices:
-  - src/appx/appx-sample1.qmd
-  - src/appx/appx-sample2.qmd
   - mm/mm.md
 
 
