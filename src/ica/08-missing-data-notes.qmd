@@ -318,6 +318,7 @@ In **multiple imputation**, multiple imputed datasets are generated with differe
 - Subsequent models are fit on each of these datasets, and both estimates and uncertainty measures are pooled across all of these fits. 
 - Multiple imputation more accurately estimates uncertainty measures.
 
+
 ## Simulation Studies 
 
 We can use a **simulation study** to investigate the statistical properties described above.
@@ -335,60 +336,60 @@ We can use a **simulation study** to investigate the statistical properties desc
 We will slowly step through the simulation study code below. We will pause frequently for you to add comments documenting what is happening. 
 
 ```{r mult_single_sim_study}
-set.seed(224)
-num_simulations <- 1000
-ci_list <- vector("list", length = num_simulations)
-
-system.time({
-for (i in 1:num_simulations) {
-    # Simulate data
-    n <- 1000
-    sim_data <- tibble(
-        x1 = runif(n, min = 0, max = 1),
-        x2 = x1 + rnorm(n, mean = 0, sd = 1),
-        x2_miss_bool = rbinom(n, size = 1, prob = x1/2),
-        x2_NA = if_else(x2_miss_bool == 1, NA, x2),
-        y = x1 + x2 + rnorm(n, mean = 0, sd = 1)
-    )
-    
-    # Single imputation ---------------
-    mice_obj <- mice(sim_data |> select(x1, x2_NA, y), m = 1, method = "norm", printFlag = FALSE)
-    si_mod <- with(mice_obj, lm(y ~ x1 + x2_NA))
-    ci_single <- si_mod$analyses[[1]] |> confint(level = 0.95)
-    ci_single <- ci_single["x2_NA",]
-    
-    # Multiple imputation -------------
-    mice_obj <- mice(sim_data |> select(x1, x2_NA, y), m = 10, method = "norm", printFlag = FALSE)
-    mi_mods <- with(mice_obj, lm(y ~ x1 + x2_NA))
-    pooled_res <- pool(mi_mods)
-    summ_pooled_res <- summary(pooled_res, conf.int = TRUE, conf.level = 0.95)
-    ci_multiple_lower <- summ_pooled_res |> filter(term=="x2_NA") |> pull(`2.5 %`)
-    ci_multiple_upper <- summ_pooled_res |> filter(term=="x2_NA") |> pull(`97.5 %`)
-    
-    # Store CI information
-    ci_list[[i]] <- tibble(
-        ci_lower = c(
-            ci_single[1],
-            ci_multiple_lower
-        ),
-        ci_upper = c(
-            ci_single[2],
-            ci_multiple_upper
-        ),
-        which_imp = c("single", "multiple")
-    )
-}
-})
-```
-
-Below we compute the confidence interval (CI) coverage probability (fraction of times the CI contains the true value of `1`) for the CIs generated from single and multiple imputation:
-
-```{r mult_single_sim_study_summ}
-ci_data <- bind_rows(ci_list)
-ci_data |> 
-    mutate(contains_truth = ci_lower < 1 & ci_upper > 1) |> 
-    group_by(which_imp) |> 
-    summarize(frac_contains_truth = mean(contains_truth))
+# set.seed(224)
+# num_simulations <- 1000
+# ci_list <- vector("list", length = num_simulations)
+# 
+# system.time({
+# for (i in 1:num_simulations) {
+#     # Simulate data
+#     n <- 1000
+#     sim_data <- tibble(
+#         x1 = runif(n, min = 0, max = 1),
+#         x2 = x1 + rnorm(n, mean = 0, sd = 1),
+#         x2_miss_bool = rbinom(n, size = 1, prob = x1/2),
+#         x2_NA = if_else(x2_miss_bool == 1, NA, x2),
+#         y = x1 + x2 + rnorm(n, mean = 0, sd = 1)
+#     )
+#     
+#     # Single imputation ---------------
+#     mice_obj <- mice(sim_data |> select(x1, x2_NA, y), m = 1, method = "norm", printFlag = FALSE)
+#     si_mod <- with(mice_obj, lm(y ~ x1 + x2_NA))
+#     ci_single <- si_mod$analyses[[1]] |> confint(level = 0.95)
+#     ci_single <- ci_single["x2_NA",]
+#     
+#     # Multiple imputation -------------
+#     mice_obj <- mice(sim_data |> select(x1, x2_NA, y), m = 10, method = "norm", printFlag = FALSE)
+#     mi_mods <- with(mice_obj, lm(y ~ x1 + x2_NA))
+#     pooled_res <- pool(mi_mods)
+#     summ_pooled_res <- summary(pooled_res, conf.int = TRUE, conf.level = 0.95)
+#     ci_multiple_lower <- summ_pooled_res |> filter(term=="x2_NA") |> pull(`2.5 %`)
+#     ci_multiple_upper <- summ_pooled_res |> filter(term=="x2_NA") |> pull(`97.5 %`)
+#     
+#     # Store CI information
+#     ci_list[[i]] <- tibble(
+#         ci_lower = c(
+#             ci_single[1],
+#             ci_multiple_lower
+#         ),
+#         ci_upper = c(
+#             ci_single[2],
+#             ci_multiple_upper
+#         ),
+#         which_imp = c("single", "multiple")
+#     )
+# }
+# })
+# ```
+# 
+# Below we compute the confidence interval (CI) coverage probability (fraction of times the CI contains the true value of `1`) for the CIs generated from single and multiple imputation:
+# 
+# ```{r mult_single_sim_study_summ}
+# ci_data <- bind_rows(ci_list)
+# ci_data |> 
+#     mutate(contains_truth = ci_lower < 1 & ci_upper > 1) |> 
+#     group_by(which_imp) |> 
+#     summarize(frac_contains_truth = mean(contains_truth))
 ```
 
 ## Done!
