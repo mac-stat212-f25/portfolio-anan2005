@@ -297,7 +297,7 @@ str_view(words, "[^aeiou]y[^aeiou]")
 
 ```{r ex_regex_classes}
 # Your code
-
+str_view(words, "[aeiou][aeiou]m")
 ```
 
 
@@ -314,7 +314,7 @@ str_view(fruit, "apple|melon|nut")
 
 ```{r ex_regex_alternation}
 # Your code
-
+str_view(fruit, "aa|ee|ii|oo|uu")
 ```
 
 
@@ -329,7 +329,11 @@ str_view(fruit, "apple|melon|nut")
 ```{r ex_regex_start_end_group}
 # Your code
 
+# Words that start with y
+str_view(words, "^y")
 
+# Words that don't start with y
+str_view(words, "^[^y]")
 ```
 
 
