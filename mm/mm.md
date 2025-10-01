@@ -35,6 +35,11 @@
 ![0929-mind_map.jpg](0929-mind_map.jpg)
 
 
+## Functions
+
+![1001-mind_map.jpg](1001-mind_map.jpg)
+
+
 
 
 
