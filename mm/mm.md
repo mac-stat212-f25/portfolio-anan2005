@@ -40,6 +40,9 @@
 ![1001-mind_map.jpg](1001-mind_map.jpg)
 
 
+## Base R
+
+![1003-mind_map.jpg](1003-mind_map.jpg)
 
 
 
