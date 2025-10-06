@@ -112,6 +112,7 @@ for (i in seq_along(no_groups)) {
 `seq_len()` is useful for iterating over the rows of a data frame because `seq_along()` would iterate over columns:
 
 ```{r seq_len_df}
+library(tidyverse)
 small_data <- tibble(a = 1:2, b = 2:3, c = 4:5)
 
 for (col in small_data) { # each element is the column 
@@ -455,11 +456,12 @@ Note that in `df_arg_combos`:
 - `remove_outliers`: this column is a **vector** and you can extract the 1st element with `[1]`
 
 ```{r}
+#| eval: false
 lin_mod_res_for <- vector(mode = "list", length = nrow(df_arg_combos))
 
 for (i in seq_along(lin_mod_res_for)) {
-    this_formula <- df_arg_combos$mod_formula[[i]] # Double [[ for the **list** of formulas
-    this_remove_outliers <- df_arg_combos$remove_outliers[i] # Single [ for the **atomic vector** of logicals
+    this_formula <- df_arg_combos$mod_formula[[i]] 
+    this_remove_outliers <- df_arg_combos$remove_outliers[i]
     lin_mod_res_for[[i]] <- fit_model(
         data = diamonds,
         mod_formula = this_formula,
