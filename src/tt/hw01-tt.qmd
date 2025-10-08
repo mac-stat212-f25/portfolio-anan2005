@@ -10,6 +10,7 @@ Explore the week's [TidyTuesday](https://github.com/rfordatascience/tidytuesday)
 
 ```{r}
 library(ggplot2)
+library(leaflet)
 ```
 
 
@@ -45,7 +46,6 @@ ggplot(frogID_data, aes(x = eventTime)) +
 ```{r}
 # Frog location distribution map
 
-library(leaflet)
 leaflet(frogID_data) %>% 
   addTiles() %>% 
   addCircleMarkers(~decimalLongitude, ~decimalLatitude,
