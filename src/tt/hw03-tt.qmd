@@ -1,0 +1,54 @@
+---
+title: "Homework 03"
+---
+
+
+## TidyTuesday Section (optional)
+
+::: {.callout-important title="Instructions"}
+
+You can count work on this week's TidyTuesday toward the exceptional work required for an A in the Homework component.
+
+:::
+
+
+Explore the week's [TidyTuesday](https://github.com/rfordatascience/tidytuesday) challenge. Develop a research question, then answer it through a short data story with [effective visualization(s)]({{< var effective-viz-url >}}).  Provide sufficient background for readers to grasp your narrative.
+
+
+> Research question: How does the percent of calories protein and time needed for the dishes influence average user ratings across different cuisines? 
+
+
+```{r}
+all_recipes <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-09-16/all_recipes.csv')
+cuisines <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-09-16/cuisines.csv')
+```
+```{r}
+library(tidyverse)
+```
+
+```{r}
+cuisines <- cuisines |> 
+  mutate(cal_prot = protein * 4,
+         pct_prot = cal_prot / calories * 100) |> 
+  filter(!is.na(avg_rating), calories > 0)
+
+top_cuisine <- cuisines  |> 
+  count(country, name = "n_recipes")  |> 
+  arrange(desc(n_recipes))  |> 
+  head(n = 6)  |>  
+  pull(country)
+
+cuisines_top6 <- cuisines |> 
+  filter(country %in% top_cuisine)
+
+ggplot(cuisines_top6, aes(x = pct_prot, y = avg_rating, color = total_time)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm") +
+  facet_wrap(~ country, ncol = 3) +
+  labs(title = "% Protein & total time needed vs. Average Rating, by Cuisine",
+       x = "% of calories from protein",
+       y = "Average rating") +
+  theme_minimal()
+
+```
+
