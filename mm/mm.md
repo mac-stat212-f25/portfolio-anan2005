@@ -60,6 +60,8 @@
 ![1022-mind_map.jpg](1022-mind_map.jpg)
 
 
+## Web scraping
 
+![1027-mind_map.jpg](1027-mind_map.jpg)
 
 
