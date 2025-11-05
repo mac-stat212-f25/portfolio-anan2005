@@ -65,3 +65,16 @@
 ![1027-mind_map.jpg](1027-mind_map.jpg)
 
 
+## Databases and SQL
+
+![1029-mind_map.jpg](1029-mind_map.jpg)
+
+
+## Presenting Effective Visuals
+
+![1105-mind_map.jpg](1105-mind_map.jpg)
+
+
+
+
+
