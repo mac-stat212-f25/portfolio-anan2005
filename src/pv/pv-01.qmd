@@ -1,5 +1,51 @@
 ---
-title: "Professional Viz Sample"
+title: "Professional Viz"
 ---
 
-Add content here
+```{r}
+library(readr)
+disasters <- read_csv("../pv/disasters.csv")
+```
+
+```{r}
+library(ggplot2)
+library(GGally)
+library(dplyr)
+library(stringr)
+
+disasters_clean <- disasters |> 
+  select(-Geometry_Coordinates_2, -Geometry_Coordinates_3, -Geometry_Coordinates_4, -Description) |> 
+  mutate(
+    Longitude = as.numeric(str_extract(Geometry_Coordinates_1, "^[^ ]+")),
+    Latitude = as.numeric(str_extract(Geometry_Coordinates_1, "[^ ]+$")),
+    Hour = as.numeric(substr(Time, 1, 2)),
+    Day = as.numeric(format(as.Date(Date), "%d"))
+  )  |> 
+  select(Category_title, Latitude, Longitude, Hour, Day)
+
+p <- ggparcoord(
+  data = disasters_clean,
+  columns = 2:5,  
+  groupColumn = 1, 
+  scale = "globalminmax", 
+  title = "Multivariate Analysis of Disaster Events",
+  alphaLines = 0.8,
+  mapping = ggplot2::aes() 
+) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    legend.position = "bottom",
+    axis.title.y = element_blank(),
+    panel.grid.major.x = element_line(color = "grey", linetype = "dashed"),
+    axis.text.x = element_text(face = "bold", color = "black")
+  ) +
+  scale_x_discrete(labels = c("Latitude", "Longitude", "Time (Hour)", "Date (Day of Month)")) +
+  labs(
+    color = "Disaster Category",
+    caption = "Each line represents one event. Clusters indicate correlation between variables for that category."
+  )
+
+print(p)
+```
+

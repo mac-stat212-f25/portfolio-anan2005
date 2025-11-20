@@ -1,0 +1,42 @@
+---
+title: "blogdown"
+---
+
+```{r}
+# 1. Install blogdown and load it
+if (!requireNamespace("blogdown", quietly = TRUE)) {
+  install.packages("blogdown")
+}
+library(blogdown)
+
+# 2. Install Hugo if needed
+blogdown::install_hugo(force = FALSE)
+
+# 3. Create a new blogdown site in a temp folder 
+new_site_dir <- file.path(tempdir(), "myblogdown_test")
+blogdown::new_site(dir = new_site_dir, 
+                   theme = "gcushen/hugo-academic",  
+                   sample = TRUE,       
+                   empty_dirs = TRUE)   
+
+# Switch into the new site directory
+setwd(new_site_dir)
+
+# 4. Create a new post Rmd
+blogdown::new_post(title = "blogdown Post",
+                   ext = ".Rmd",
+                   subdir = "post")   
+
+# 5. Serve the site locally with live reload
+blogdown::serve_site()
+
+# 6. Build the full static site
+blogdown::build_site()
+
+
+message("blogdown test site is created at: ", new_site_dir)
+message("To stop the local server, press Esc (or Ctrl+C in console).")
+
+```
+
+
