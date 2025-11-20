@@ -85,6 +85,10 @@ book:
       - src/ica/15-scraping-notes.qmd
       - src/ica/16-databases-notes.qmd
 
+    - part: "Exam"
+      chapters:
+      - exam/blogdown.qmd
+
 
   appendices:
   - mm/mm.md
